@@ -1,0 +1,23 @@
+{
+  "name": "endorsements-2016-twitter-stream",
+  "version": "0.0.0",
+  "description": "monitor twitter for 2016 presidential candidate endorsements using streaming api",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mattybow/endorsements-2016-twitter-stream.git"
+  },
+  "author": "Matt Bow",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mattybow/endorsements-2016-twitter-stream/issues"
+  },
+  "homepage": "https://github.com/mattybow/endorsements-2016-twitter-stream#readme",
+  "dependencies": {
+    "mongojs": "^1.4.1",
+    "twit": "^2.1.1"
+  }
+}
