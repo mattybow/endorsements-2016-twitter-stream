@@ -7,7 +7,7 @@ var db = mongojs(connectionStr, ['twStream']);
 console.log(connectionStr, db.twStream.findOne);
 
 db.twStream.findOne({},(err,doc) => {
-  console.log('hi', doc);
+  console.log('hi', err, doc);
   if(err) {
     throw new Error(`no db connection: ${err}`);
   }

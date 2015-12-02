@@ -16,7 +16,7 @@ var db = (0, _mongojs2.default)(connectionStr, ['twStream']);
 console.log(connectionStr, db.twStream.findOne);
 
 db.twStream.findOne({}, function (err, doc) {
-  console.log('hi', doc);
+  console.log('hi', err, doc);
   if (err) {
     throw new Error('no db connection: ' + err);
   }
