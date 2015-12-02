@@ -80,7 +80,7 @@ function connectionStrToDb(db) {
     var DB_USER = _process$env2.DB_USER;
     var DB_PASS = _process$env2.DB_PASS;
 
-    return DB_USER + ':' + DB_PASS + '@' + db;
+    return DB_USER + ':' + DB_PASS + '@127.0.0.1/' + db;
   }
   return db;
 }
