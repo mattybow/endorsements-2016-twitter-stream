@@ -16,12 +16,11 @@ var db = (0, _mongojs2.default)(connectionStr, ['twStream']);
 console.log(connectionStr, db.twStream.findOne);
 
 db.twStream.findOne({}, function (err, doc) {
-  console.log('hi');
+  console.log('hi', doc);
   if (err) {
     throw new Error('no db connection: ' + err);
-  } else {
-    console.log(new Date(), 'STARTED STREAM MONITOR');
   }
+  console.log(new Date(), 'STARTED STREAM MONITOR');
 });
 
 var _process$env = process.env;

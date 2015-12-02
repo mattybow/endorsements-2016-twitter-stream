@@ -7,12 +7,11 @@ var db = mongojs(connectionStr, ['twStream']);
 console.log(connectionStr, db.twStream.findOne);
 
 db.twStream.findOne({},(err,doc) => {
-  console.log('hi');
+  console.log('hi', doc);
   if(err) {
     throw new Error(`no db connection: ${err}`);
-  } else {
-    console.log(new Date(), 'STARTED STREAM MONITOR');
   }
+  console.log(new Date(), 'STARTED STREAM MONITOR');
 });
 
 const { CONSUMER_KEY,
