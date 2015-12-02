@@ -4,7 +4,7 @@ import mongojs from 'mongojs';
 const connectionStr = connectionStrToDb('endorsements');
 
 var db = mongojs(connectionStr, ['twStream']);
-console.log(connectionStr);
+console.log(connectionStr, db);
 
 db.twStream.findOne({},(err,doc) => {
   if(err) {
@@ -84,7 +84,7 @@ endStream.on('tweet', (t) => {
 function connectionStrToDb(db){
   if(process.env.NODE_ENV === 'production'){
     const {DB_USER, DB_PASS} = process.env;
-    return `${DB_USER}:${DB_PASS}@127.0.0.1/${db}`;
+    return `${DB_USER}:${DB_PASS}@${db}`;
   }
   return db;
 }
