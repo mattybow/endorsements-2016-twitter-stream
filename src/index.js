@@ -1,7 +1,9 @@
 import Twit from 'twit';
 import mongojs from 'mongojs';
 
-var db = mongojs('endorsements', ['twStream']);
+const connectionStr = connectionStrToDb('endorsements');
+
+var db = mongojs(connectionStr, ['twStream']);
 
 db.twStream.findOne({},(err,doc) => {
   if(err) {
@@ -63,6 +65,7 @@ const endStream = twit.stream('statuses/filter', {
 endStream.on('tweet', (t) => {
   const retweeted = t.retweeted_status ? true : false;
   const {verified} = t.user;
+  console.log(verified, t.text);
   if (verified){
     const link = `https://twitter.com/${t.user.screen_name}/status/${t.id_str}`;
     const data = {
@@ -76,3 +79,11 @@ endStream.on('tweet', (t) => {
     });
   }
 });
+
+function connectionStrToDb(db){
+  if(process.env.NODE_ENV === 'production'){
+    const {DB_USER, DB_PASS} = process.env;
+    return `${DB_USER}:${DB_PASS}127.0.0.1/${db}?authMechanism=SCRAM-SHA-1`;
+  }
+  return db;
+}
