@@ -56,8 +56,8 @@ var endStream = twit.stream('statuses/filter', {
 endStream.on('tweet', function (t) {
   var retweeted = t.retweeted_status ? true : false;
   var verified = t.user.verified;
+  //console.log(verified, t.text);
 
-  console.log(verified, t.text);
   if (verified) {
     (function () {
       var link = 'https://twitter.com/' + t.user.screen_name + '/status/' + t.id_str;

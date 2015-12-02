@@ -66,7 +66,7 @@ const endStream = twit.stream('statuses/filter', {
 endStream.on('tweet', (t) => {
   const retweeted = t.retweeted_status ? true : false;
   const {verified} = t.user;
-  console.log(verified, t.text);
+  //console.log(verified, t.text);
   if (verified){
     const link = `https://twitter.com/${t.user.screen_name}/status/${t.id_str}`;
     const data = {
