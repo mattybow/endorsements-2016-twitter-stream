@@ -4,9 +4,10 @@ import mongojs from 'mongojs';
 const connectionStr = connectionStrToDb('endorsements');
 
 var db = mongojs(connectionStr, ['twStream']);
-console.log(connectionStr, db);
+console.log(connectionStr, db.twStream.findOne);
 
 db.twStream.findOne({},(err,doc) => {
+  console.log('hi');
   if(err) {
     throw new Error(`no db connection: ${err}`);
   } else {

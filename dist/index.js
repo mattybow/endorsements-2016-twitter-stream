@@ -13,9 +13,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var connectionStr = connectionStrToDb('endorsements');
 
 var db = (0, _mongojs2.default)(connectionStr, ['twStream']);
-console.log(connectionStr, db);
+console.log(connectionStr, db.twStream.findOne);
 
 db.twStream.findOne({}, function (err, doc) {
+  console.log('hi');
   if (err) {
     throw new Error('no db connection: ' + err);
   } else {
