@@ -10,7 +10,9 @@ var _mongojs2 = _interopRequireDefault(_mongojs);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var db = (0, _mongojs2.default)('endorsements', ['twStream']);
+var connectionStr = connectionStrToDb('endorsements');
+
+var db = (0, _mongojs2.default)(connectionStr, ['twStream']);
 
 db.twStream.findOne({}, function (err, doc) {
   if (err) {
@@ -54,6 +56,7 @@ endStream.on('tweet', function (t) {
   var retweeted = t.retweeted_status ? true : false;
   var verified = t.user.verified;
 
+  console.log(verified, t.text);
   if (verified) {
     (function () {
       var link = 'https://twitter.com/' + t.user.screen_name + '/status/' + t.id_str;
@@ -69,3 +72,14 @@ endStream.on('tweet', function (t) {
     })();
   }
 });
+
+function connectionStrToDb(db) {
+  if (process.env.NODE_ENV === 'production') {
+    var _process$env2 = process.env;
+    var DB_USER = _process$env2.DB_USER;
+    var DB_PASS = _process$env2.DB_PASS;
+
+    return DB_USER + ':' + DB_PASS + '127.0.0.1/' + db;
+  }
+  return db;
+}
