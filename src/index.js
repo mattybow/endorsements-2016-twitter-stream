@@ -83,7 +83,7 @@ endStream.on('tweet', (t) => {
 function connectionStrToDb(db){
   if(process.env.NODE_ENV === 'production'){
     const {DB_USER, DB_PASS} = process.env;
-    return `${DB_USER}:${DB_PASS}127.0.0.1/${db}?authMechanism=SCRAM-SHA-1`;
+    return `${DB_USER}:${DB_PASS}127.0.0.1/${db}`;
   }
   return db;
 }
