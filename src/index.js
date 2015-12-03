@@ -3,7 +3,7 @@ import mongojs from 'mongojs';
 
 const connectionStr = connectionStrToDb('endorsements');
 
-var db = mongojs(connectionStr, ['twStream']);
+var db = mongojs(connectionStr, ['twStream'], {authMechanism: 'ScramSHA1'});
 console.log(connectionStr, db.twStream.findOne);
 
 db.twStream.findOne({},(err,doc) => {

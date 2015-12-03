@@ -12,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var connectionStr = connectionStrToDb('endorsements');
 
-var db = (0, _mongojs2.default)(connectionStr, ['twStream']);
+var db = (0, _mongojs2.default)(connectionStr, ['twStream'], { authMechanism: 'ScramSHA1' });
 console.log(connectionStr, db.twStream.findOne);
 
 db.twStream.findOne({}, function (err, doc) {
