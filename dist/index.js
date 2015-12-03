@@ -54,6 +54,7 @@ var endStream = twit.stream('statuses/filter', {
 
 endStream.on('tweet', function (t) {
   var retweeted = t.retweeted_status ? true : false;
+  var created_at = t.created_at;
   var verified = t.user.verified;
 
   if (process.env.NODE_ENV !== 'production') {
@@ -66,7 +67,8 @@ endStream.on('tweet', function (t) {
         text: t.text,
         id: t.id_str,
         link: link,
-        retweeted: retweeted
+        retweeted: retweeted,
+        created_at: created_at
       };
       db.twStream.insert(data, function (err, doc) {
         console.log('inserted doc', data);
