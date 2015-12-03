@@ -4,10 +4,9 @@ import mongojs from 'mongojs';
 const connectionStr = connectionStrToDb('endorsements');
 
 var db = mongojs(connectionStr, ['twStream'], {authMechanism: 'ScramSHA1'});
-console.log(connectionStr, db.twStream.findOne);
 
+// Test connection
 db.twStream.findOne({},(err,doc) => {
-  console.log('hi', err, doc);
   if(err) {
     throw new Error(`no db connection: ${err}`);
   }
@@ -66,7 +65,6 @@ const endStream = twit.stream('statuses/filter', {
 endStream.on('tweet', (t) => {
   const retweeted = t.retweeted_status ? true : false;
   const {verified} = t.user;
-  //console.log(verified, t.text);
   if (verified){
     const link = `https://twitter.com/${t.user.screen_name}/status/${t.id_str}`;
     const data = {

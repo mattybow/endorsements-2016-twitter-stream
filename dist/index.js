@@ -13,10 +13,9 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var connectionStr = connectionStrToDb('endorsements');
 
 var db = (0, _mongojs2.default)(connectionStr, ['twStream'], { authMechanism: 'ScramSHA1' });
-console.log(connectionStr, db.twStream.findOne);
 
+// Test connection
 db.twStream.findOne({}, function (err, doc) {
-  console.log('hi', err, doc);
   if (err) {
     throw new Error('no db connection: ' + err);
   }
@@ -56,7 +55,6 @@ var endStream = twit.stream('statuses/filter', {
 endStream.on('tweet', function (t) {
   var retweeted = t.retweeted_status ? true : false;
   var verified = t.user.verified;
-  //console.log(verified, t.text);
 
   if (verified) {
     (function () {
