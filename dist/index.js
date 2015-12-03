@@ -65,7 +65,7 @@ endStream.on('tweet', function (t) {
       var link = 'https://twitter.com/' + t.user.screen_name + '/status/' + t.id_str;
       var data = {
         text: t.text,
-        id: t.id_str,
+        _id: t.id_str,
         link: link,
         retweeted: retweeted,
         created_at: created_at

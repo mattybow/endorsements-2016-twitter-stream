@@ -72,7 +72,7 @@ endStream.on('tweet', (t) => {
     const link = `https://twitter.com/${t.user.screen_name}/status/${t.id_str}`;
     const data = {
       text:t.text,
-      id:t.id_str,
+      _id:t.id_str,
       link:link,
       retweeted,
       created_at
