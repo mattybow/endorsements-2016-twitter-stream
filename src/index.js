@@ -65,6 +65,9 @@ const endStream = twit.stream('statuses/filter', {
 endStream.on('tweet', (t) => {
   const retweeted = t.retweeted_status ? true : false;
   const {verified} = t.user;
+  if(process.env.NODE_ENV !== 'production'){
+    console.log(verified, t.text);
+  }
   if (verified){
     const link = `https://twitter.com/${t.user.screen_name}/status/${t.id_str}`;
     const data = {
@@ -81,8 +84,10 @@ endStream.on('tweet', (t) => {
 
 function connectionStrToDb(db){
   if(process.env.NODE_ENV === 'production'){
-    const {DB_USER, DB_PASS} = process.env;
-    return `${DB_USER}:${DB_PASS}@127.0.0.1/${db}?authMechanism=SCRAM-SHA-1`;
+    const {DB_USER, DB_PASS, DB_HOST, DB_PORT} = process.env;
+    const host = DB_HOST || 'experiment-data.mattbow.com';
+    return `${DB_USER}:${DB_PASS}@${host}:${DB_PORT}/${db}?authMechanism=SCRAM-SHA-1`;
   }
+  // connect to local db
   return db;
 }
