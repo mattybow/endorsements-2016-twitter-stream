@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/index.js",
     "build": "babel src/index.js -o dist/index.js",
-    "deploy":"pm2 start dist/index.js --name eStream",
+    "deploy": "pm2 start dist/index.js --name eStream",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,12 +20,12 @@
   },
   "homepage": "https://github.com/mattybow/endorsements-2016-twitter-stream#readme",
   "dependencies": {
+    "kerberos": "0.0.17",
     "mongojs": "^1.4.1",
     "twit": "^2.1.1"
   },
   "devDependencies": {
     "babel-core": "^6.2.1",
-    "babel-loader": "^6.2.0",
     "babel-preset-es2015": "^6.1.18"
   },
   "babel": {

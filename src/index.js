@@ -4,6 +4,7 @@ import mongojs from 'mongojs';
 const connectionStr = connectionStrToDb('endorsements');
 
 var db = mongojs(connectionStr, ['twStream'], {authMechanism: 'ScramSHA1'});
+console.log(connectionStr);
 
 // Test connection
 db.twStream.findOne({},(err,doc) => {
