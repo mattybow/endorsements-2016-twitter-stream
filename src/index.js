@@ -71,14 +71,17 @@ endStream.on('tweet', (t) => {
   }
   if (verified){
     const link = `https://twitter.com/${t.user.screen_name}/status/${t.id_str}`;
+    const created_time = new Date(created_at).valueOf().toString();
     const data = {
       text:t.text,
       _id:t.id_str,
       link:link,
       retweeted,
-      created_at
+      created_at,
+      created_time
     };
     db.twStream.insert(data,(err,doc) => {
+      if(err) console.log(err, doc);
       console.log('inserted doc', data);
     });
   }

@@ -64,14 +64,17 @@ endStream.on('tweet', function (t) {
   if (verified) {
     (function () {
       var link = 'https://twitter.com/' + t.user.screen_name + '/status/' + t.id_str;
+      var created_time = new Date(created_at).valueOf().toString();
       var data = {
         text: t.text,
         _id: t.id_str,
         link: link,
         retweeted: retweeted,
-        created_at: created_at
+        created_at: created_at,
+        created_time: created_time
       };
       db.twStream.insert(data, function (err, doc) {
+        if (err) console.log(err, doc);
         console.log('inserted doc', data);
       });
     })();
